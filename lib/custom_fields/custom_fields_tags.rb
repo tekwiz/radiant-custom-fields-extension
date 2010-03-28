@@ -69,7 +69,7 @@ module CustomFields
       raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_fields
       regexp = Regexp.new(pattern)
       cf = tag.locals.custom_fields || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
-      if cf.value and cf.value.match(regexp)
+      if cf and cf.value and cf.value.match(regexp)
         tag.expand
       end
     end
@@ -85,7 +85,7 @@ module CustomFields
       raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_fields
       regexp = Regexp.new(pattern)
       cf = tag.locals.custom_fields || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
-      unless cf.value and cf.value.match(regexp)
+      unless cf and cf.value and cf.value.match(regexp)
         tag.expand
       end
     end
